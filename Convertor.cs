@@ -118,8 +118,8 @@ namespace JsonGenerator
 
                 return new PopulationOfArea
                 {
-                    AreaCode = code,
-                    AreaName = itemArray[0].ToString(),
+                    RegionCode = code,
+                    RegionName = itemArray[0].ToString(),
                     Together = together,
                     Men = men,
                     Women = women
