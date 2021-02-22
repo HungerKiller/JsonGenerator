@@ -13,13 +13,13 @@ namespace JsonGenerator
 
             for (var i = 0; i < dataSet.Tables.Count; i++)
             {
-                if (!int.TryParse(dataSet.Tables[i].TableName, out int year))
+                if (!int.TryParse(dataSet.Tables[i].TableName.Trim(), out int year))
                     continue;
                 // Get datas
                 var areasPopulation = new List<PopulationOfArea>();
                 for (var j = 0; j < dataSet.Tables[i].Rows.Count; j++)
                 {
-                    switch (dataSet.Tables[i].Rows[j].ItemArray[0])
+                    switch (dataSet.Tables[i].Rows[j].ItemArray[0].ToString().Trim())
                     {
                         case "Auvergne-Rhône-Alpes":
                             areasPopulation.Add(ConvertDatas("FR-ARA", dataSet.Tables[i].Rows[j].ItemArray));
@@ -90,36 +90,36 @@ namespace JsonGenerator
             {
                 var together = new PopulationByAge
                 {
-                    Between0and19 = int.Parse(itemArray[1].ToString()),
-                    Between20and39 = int.Parse(itemArray[2].ToString()),
-                    Between40and59 = int.Parse(itemArray[3].ToString()),
-                    Between60and74 = int.Parse(itemArray[4].ToString()),
-                    GreaterThan75 = int.Parse(itemArray[5].ToString()),
-                    Total = int.Parse(itemArray[6].ToString())
+                    Between0and19 = int.Parse(itemArray[1].ToString().Trim()),
+                    Between20and39 = int.Parse(itemArray[2].ToString().Trim()),
+                    Between40and59 = int.Parse(itemArray[3].ToString().Trim()),
+                    Between60and74 = int.Parse(itemArray[4].ToString().Trim()),
+                    GreaterThan75 = int.Parse(itemArray[5].ToString().Trim()),
+                    Total = int.Parse(itemArray[6].ToString().Trim())
                 };
                 var men = new PopulationByAge
                 {
-                    Between0and19 = int.Parse(itemArray[7].ToString()),
-                    Between20and39 = int.Parse(itemArray[8].ToString()),
-                    Between40and59 = int.Parse(itemArray[9].ToString()),
-                    Between60and74 = int.Parse(itemArray[10].ToString()),
-                    GreaterThan75 = int.Parse(itemArray[11].ToString()),
-                    Total = int.Parse(itemArray[12].ToString())
+                    Between0and19 = int.Parse(itemArray[7].ToString().Trim()),
+                    Between20and39 = int.Parse(itemArray[8].ToString().Trim()),
+                    Between40and59 = int.Parse(itemArray[9].ToString().Trim()),
+                    Between60and74 = int.Parse(itemArray[10].ToString().Trim()),
+                    GreaterThan75 = int.Parse(itemArray[11].ToString().Trim()),
+                    Total = int.Parse(itemArray[12].ToString().Trim())
                 };
                 var women = new PopulationByAge
                 {
-                    Between0and19 = int.Parse(itemArray[13].ToString()),
-                    Between20and39 = int.Parse(itemArray[14].ToString()),
-                    Between40and59 = int.Parse(itemArray[15].ToString()),
-                    Between60and74 = int.Parse(itemArray[16].ToString()),
-                    GreaterThan75 = int.Parse(itemArray[17].ToString()),
-                    Total = int.Parse(itemArray[18].ToString())
+                    Between0and19 = int.Parse(itemArray[13].ToString().Trim()),
+                    Between20and39 = int.Parse(itemArray[14].ToString().Trim()),
+                    Between40and59 = int.Parse(itemArray[15].ToString().Trim()),
+                    Between60and74 = int.Parse(itemArray[16].ToString().Trim()),
+                    GreaterThan75 = int.Parse(itemArray[17].ToString().Trim()),
+                    Total = int.Parse(itemArray[18].ToString().Trim())
                 };
 
                 return new PopulationOfArea
                 {
                     RegionCode = code,
-                    RegionName = itemArray[0].ToString(),
+                    RegionName = itemArray[0].ToString().Trim(),
                     Together = together,
                     Men = men,
                     Women = women
