@@ -84,6 +84,38 @@ namespace JsonGenerator
             return populationOfYears;
         }
 
+        public static List<PopulationOfYear> ConvertFranceDatasetToObject(DataSet dataSet)
+        {
+            var populationOfYears = new List<PopulationOfYear>();
+
+            for (var i = 0; i < dataSet.Tables.Count; i++)
+            {
+                if (!int.TryParse(dataSet.Tables[i].TableName.Trim(), out int year))
+                    continue;
+                // Get datas
+                var areasPopulation = new List<PopulationOfArea>();
+                for (var j = 0; j < dataSet.Tables[i].Rows.Count; j++)
+                {
+                    switch (dataSet.Tables[i].Rows[j].ItemArray[0].ToString().Trim())
+                    {
+                        case "France métropolitaine":
+                            areasPopulation.Add(ConvertDatas("Métropole", dataSet.Tables[i].Rows[j].ItemArray));
+                            break;
+                        case "DOM":
+                            areasPopulation.Add(ConvertDatas("DOM", dataSet.Tables[i].Rows[j].ItemArray));
+                            break;
+                        case "France métropolitaine et DOM":
+                            areasPopulation.Add(ConvertDatas("France", dataSet.Tables[i].Rows[j].ItemArray));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                populationOfYears.Add(new PopulationOfYear { Year = year, AreasPopulation = areasPopulation });
+            }
+            return populationOfYears;
+        }
+
         private static PopulationOfArea ConvertDatas(string code, object[] itemArray)
         {
             try

@@ -9,8 +9,12 @@ namespace JsonGenerator
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
             var dataSet = ExcelReader.ReadRegionPopulations("Resources/estim.pop.nreg.sexe.gca.1975.2021.fr.xls");
-            var objects = Convertor.ConvertRegionDatasetToObject(dataSet);
-            JsonWriter.WriteJson(objects, "populationRegions.json");
+            var regionsObjects = Convertor.ConvertRegionDatasetToObject(dataSet);
+            JsonWriter.WriteJson(regionsObjects, "populationRegions.json");
+
+            var franceObjects = Convertor.ConvertFranceDatasetToObject(dataSet);
+            JsonWriter.WriteJson(franceObjects, "populationFrance.json");
+            
         }
     }
 }
