@@ -11,7 +11,7 @@ namespace JsonGenerator
         {
             var populationOfYears = new List<PopulationOfYear>();
 
-            for (var i = 0; i < dataSet.Tables.Count; i++)
+            for (var i = dataSet.Tables.Count - 1; i >= 0; i--)
             {
                 if (!int.TryParse(dataSet.Tables[i].TableName.Trim(), out int year))
                     continue;
@@ -88,7 +88,7 @@ namespace JsonGenerator
         {
             var populationOfYears = new List<PopulationOfYear>();
 
-            for (var i = 0; i < dataSet.Tables.Count; i++)
+            for (var i = dataSet.Tables.Count - 1; i >= 0; i--)
             {
                 if (!int.TryParse(dataSet.Tables[i].TableName.Trim(), out int year))
                     continue;
